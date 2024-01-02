@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarQuery Integration</title>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- Include CarQuery library -->
+    <script src="http://www.carqueryapi.com/js/carquery.0.3.4.js"></script>
+  
+
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CarQuery Integration</title>
+        <!-- Include jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <!-- Include CarQuery library -->
+        <script src="http://www.carqueryapi.com/js/carquery.0.3.4.js"></script>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body class="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl">
+
+      <div>
+        <div class="max-w-[700px] shadow-md p-6 rounded-md bg-white dark:bg-slate-700">
+          <div class="flex items-start sm:items-center mb-4">
+            <h1 class="text-4xl flex-1 dark:text-white">
+              Dark/Light Mode
+            </h1>
+          
+          </div>
+          <button
+            onclick="toggleDarkMode()"
+            class="py-2 px-4 bg-black text-white rounded-md dark:bg-white dark:text-black"
+          >
+            Change mode here
+          </button>
+        </div>
+      
+        <div class="bg-white dark:bg-slate-800  rounded-lg p-8 ring-1 ring-gray-900/5 shadow-xl min-h-screen w-full">
+          <div >
+            <h1 class="text-3xl font-bold mt-8 mb-4">
+              Please Choose Vehicle Information
+            </h1>
+            <div class="mb-4">
+              <select class="w-full p-2 border border-gray-300 rounded" name="car-years" id="car-years"></select>
+            </div>
+            <div class="mb-4">
+              <select class="w-full p-2 border border-gray-300 rounded" name="car-makes" id="car-makes"></select>
+            </div>
+            <div class="mb-4">
+              <select class="w-full p-2 border border-gray-300 rounded" name="car-models" id="car-models"></select>
+            </div>
+            <div class="mb-4">
+              <select class="w-full p-2 border border-gray-300 rounded" name="car-model-trims" id="car-model-trims"></select>
+            </div>
+      
+            <input class="w-full py-2 mb-4 bg-blue-500 text-white rounded cursor-pointer" id="cq-show-data"
+                   type="button" value="Show Data" />
+            <div id="car-model-data" class="mb-4"></div>
+          </div>
+        </div>
+      </div>
+    
+        <script type="text/javascript">
+            $(document).ready(function () {
+                // Create a variable for the CarQuery object
+                var carquery = new CarQuery();
+    
+                // Run the carquery init function to get things started
+                carquery.init();
+    
+                // Optional: Customize as needed
+                carquery.setFilters({ sold_in_us: true });
+    
+                // Optional: Initialize year, make, model, trim dropdowns
+                carquery.initYearMakeModelTrim('car-years', 'car-makes', 'car-models', 'car-model-trims');
+    
+                // Optional: Set the onclick event for a button to show car data
+                $('#cq-show-data').click(function () {
+                    carquery.populateCarData('car-model-data');
+                });
+    
+                // Optional: Initialize search interface elements
+                var searchArgs = {
+                    // Customize the search interface elements as needed
+                    body_id: "cq-body",
+                    default_search_text: "Keyword Search",
+                    // ... other options
+                };
+                carquery.initSearchInterface(searchArgs);
+    
+                // If creating a search interface, set onclick event for the search button
+                $('#cq-search-btn').click(function () {
+                    carquery.search();
+                });
+            });
+
+            function toggleDarkMode() {
+    const htmlElement = document.documentElement;
+    htmlElement.classList.toggle('dark');
+
+    // Save user preference in localStorage
+    const isDarkModeEnabled = htmlElement.classList.contains('dark');
+    localStorage.setItem('darkMode', isDarkModeEnabled);
+  }
+
+  // Check user preference in localStorage and apply dark mode if necessary
+  const savedDarkMode = localStorage.getItem('darkMode');
+  if (savedDarkMode === 'true') {
+    document.documentElement.classList.add('dark');
+  }
+
+        </script>
+         <div id="root"></div>
+         <script type="module" src="/src/main.jsx"></script>
+    </body>
+    </html>
+    
+  
