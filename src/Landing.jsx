@@ -13,15 +13,15 @@ function Landing({ onSearch, searchResults }) {
 
   return (
     
-    <div className="bg-white dark:bg-slate-800 text-black dark:text-white  rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-Xl">
-      <div className="flex flex-col md:flex-row items-center mb-4">
+    <div className="bg-sky-100 dark:bg-sky-950 rounded-lg px-6 py-8 ring-1 ring-sky-600/5 shadow-xxl">
+      <div className="flex flex-col md:flex-row items-center mb-2">
   
         <input
           type="text"
           placeholder="Model Year"
           value={modelYear}
           onChange={(e) => setModelYear(e.target.value)}
-          className="mb-2 md:mb-4 md:mr-4 p-4 border border-gray-300 rounded"
+          className="mb-2 md:mb-0 md:mr-2 p-2 border border-gray-300 rounded"
         />
         <input
           type="text"
@@ -39,15 +39,15 @@ function Landing({ onSearch, searchResults }) {
         />
         <button
           onClick={handleSearchClick}
-          className="bg-blue-500 text-white p-2 rounded"
+          className="bg-sky-800 text-white p-2 rounded"
         >
           Search Recalls
         </button>
       </div>
-      <div>
+      <div className='text-black dark:text-white'>
         {searchResults && searchResults.results.length > 0 && (
           <div>
-            <h2 className="text-xl font-bold mb-4">
+            <h2 className="text-black dark:text-white text-xl font-bold mb-4">
               {searchResults.Count} Results Found
             </h2>
             {searchResults.results.map((result, index) => (

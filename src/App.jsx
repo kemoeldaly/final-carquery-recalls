@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Landing from './Landing';
-import CarDataDisplay from './CarDataDisplay'; 
+
 
 function App() {
   const [searchResults, setSearchResults] = useState(null);
